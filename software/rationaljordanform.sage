@@ -21,6 +21,8 @@ def rationaljordanform(M):
         i= i+1
     #print(JR)
     i =0
+    #print(F)
+    JNR =matrix(QQ,[])
     while i<len(F):
         JC = matrix(QQ,[])
         if F[i][0].degree()>1:
@@ -53,6 +55,8 @@ def rationaljordanform(M):
                 JC = block_matrix([[JC],[JCC]])
                 #print(JC)
                 j=j+1
+        #print(JC)
+        JNR = block_diagonal_matrix(JNR,JC)
         i = i+1
     #print(JC)
-    return [JR,JC]
+    return [JR,JNR]
