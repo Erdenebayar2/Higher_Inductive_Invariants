@@ -1,10 +1,10 @@
 def convertmult(mul,c,n):
     C = [var(f'C{i}') for i in range(len(c))]
-    cn = [c[0]]
-    i = 1;
-    while i <len(c)-1:
-        cn.append(c[i]+1)
-        i = i+1
+    #=cn = [c[0]]
+    #i = 1;
+    #while i <len(c)-1:
+        #cn.append(c[i]+1)
+        #i = i+1
     i = 0
     while i < len(mul):
         C[i]=[]
@@ -17,10 +17,10 @@ def convertmult(mul,c,n):
             #print(C[i])
             j = j+1
         i = i+1
-    CSet = C[0]
-    i =1;
+    CSet = []
+    i =0;
     while i<len(mul):
         CSet = CSet +C[i]
         i=i+1
-    CSet.append(c[len(c)-1])
+    #CSet.append(c[len(c)-1])
     return CSet
