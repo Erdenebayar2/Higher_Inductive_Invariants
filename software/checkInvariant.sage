@@ -19,7 +19,7 @@ def checkInvariant(c, M,r):
     f = f-alpha*y**(r+1)
     qf = qepcad_formula
     if sum(mulnr) ==0:
-        F = qf.and_(0,0)
+        F = qf.or_(lam[0]<=0,lam[1]>0)
     G = qf.or_(alpha==0, alpha==1)
     j=0
     while j<len(cnr)-1:
@@ -67,19 +67,6 @@ def checkInvariant(c, M,r):
     nr = MR.nrows()
     char_poly = MR.charpoly('x')
     mul = multiplicity(char_poly)
-    ###px = [var(f'px{i}') for i in range(nr+1)]
-    #X = [px[1]];
-    #i = 1;
-    #while i < n:
-        #X.append(px[i+1])
-        #i = i+1
-    #print(X)
-    #print(c)
-    #cn = [cr[0]]
-    #i = 1;
-    #while i <len(c)-1:
-        #cn.append(c[i])
-        #i = i+1
     if sum(mul) > 0:
         cr = matrix(QQ, cr)
         #print(cr)
