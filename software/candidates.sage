@@ -36,7 +36,6 @@ def candidates(M):
     TSet.append([-1,1])
     TSet = CartesianProduct_iters(*TSet).list()
     print(TSet)
-    #print(TSet)
     ### Rational case
     nr = MR.nrows()
     char_poly = MR.charpoly('x')
