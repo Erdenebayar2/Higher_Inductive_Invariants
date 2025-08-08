@@ -2,7 +2,7 @@ def generateInvariant(M,r):
     char_poly = M.charpoly('x')
     mul = multiplicity(char_poly)
     RJF = rationaljordanform(M)
-    #ratmul = rationalmul(M)
+    ratmul = rationalmul(M)
     #print('Ra')
     #print(ratmul)
     #print(mul)
@@ -11,6 +11,8 @@ def generateInvariant(M,r):
         m = 1
     else:
         m=0
+    if sum(mul) == sum(ratmul) and sum(mul)>	0:
+        m=2
     print(m)
     n = M.nrows()
     if r==0 and m<1:
@@ -29,15 +31,15 @@ def generateInvariant(M,r):
             TSet.remove(Pre[i])
             i = i+1
         print('Here')
-        print(TSet)
+        print(Inv)
         i=0
-        
         while i < len(TSet):
             #print(i);
             print(TSet[i])
             print(checkInvariant(TSet[i],RJF,r)) 
             if checkInvariant(TSet[i],RJF,r) == 'TRUE':
                 Inv.append(TSet[i])
+                print(Inv)
             i = i+1
         print(Inv)
         Inv = mergevectors(RJF[1],Inv)
@@ -89,4 +91,60 @@ def generateInvariant(M,r):
         #print(InvCom)
         #print(InvComM)
         Inv = [InvComM, InvCom]
+    if r==0 and m==2:
+        Inv = generateInvariantAllRational(M,0)
+        print(Inv)
+    if r >0 and m==2:
+        Pre = generateInvariantAllRAtional(M,r-1)
+        Inv = Pre
+        print(Pre)
+        i = 0
+        TSet = candidates(RJF)
+        TSet =mergevectors(RJF[1],TSet)
+        print('TSet')
+        print(Inv)
+        while i< len(Pre):
+            TSet.remove(Pre[i])
+            i = i+1
+        print('Here')
+        print(TSet)
+        i=0
+        while i < len(TSet):
+            #print(i);
+            print(TSet[i])
+            print(checkInvariantRational(TSet[i],RJF[0],r)) 
+            if checkInvariantRational(TSet[i],RJF[0],r) == 'TRUE':
+                Inv.append(TSet[i])
+                print(Inv)
+            i = i+1
+        ### Add zeros for complex eigenvalues
+    Inva=[]
+    i =0
+    while i< len(Inv):
+        j=0
+        #m =[]
+        #while j<len(mul):
+            #m.append(mul[len(mul)-1-j])
+            #j=j+1
+        #print(m)
+        Inva.append(Inv[i])
+        i=i+1
+    i=0
+    Inv =[]
+    #print(Inva)
+    while i < len(Inva):
+        Addcomplex=[]
+        j=0
+        while j< len(Inva[i])-1:
+            Addcomplex.append(Inva[i][j])
+            j=j+1
+        j=0
+        while j< n +1- len(Inva[i]):
+            j=j+1
+            Addcomplex.append(0)
+        #print(Addcomplex)
+        Addcomplex.append(Inva[i][len(Inva[i])-1])
+        Inv.append(Addcomplex)
+        #print(Inv)
+        i=i+1
     return Inv
