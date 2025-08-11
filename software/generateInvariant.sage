@@ -3,130 +3,25 @@ def generateInvariant(M,r):
     mul = multiplicity(char_poly)
     RJF = rationaljordanform(M)
     ratmul = rationalmul(M)
-    #print('Ra')
-    #print(ratmul)
-    #print(mul)
-    print(mul)
-    if sum(mul)==0 :
-        m = 1
-    else:
-        m=0
-    if sum(mul) == sum(ratmul) and sum(mul)>	0:
-        m=2
-    print(m)
     n = M.nrows()
-    if r==0 and m<1:
-        Inv = generateInvariantAll(M,0)
-        print(Inv)
+    a = [var(f'a{i}') for i in range(n+2)]
+    x = [var(f'x{i}') for i in range(n+1)]
+    i=1
+    InvIneq = 0
+    while i< n+1:
+        InvIneq = InvIneq+a[i]*x[i]
+        i = i+1
+    InvIneq = InvIneq+a[n+1]
+    Invm = generateInvariantN(M,r)
+    Inv = Invm[0]
+    m = Invm[1]
+    if m == 0:
         Inv = mergevectors(RJF[1],Inv)
-    if r >0 and m<1:
-        Pre = generateInvariantAll(M,r-1)
-        Inv = Pre
-        print(Pre)
-        i = 0
-        TSet = candidates(RJF)
-        print('TSet')
-        print(TSet)
-        while i< len(Pre):
-            TSet.remove(Pre[i])
-            i = i+1
-        print('Here')
-        print(Inv)
-        i=0
-        while i < len(TSet):
-            #print(i);
-            print(TSet[i])
-            print(checkInvariant(TSet[i],RJF,r)) 
-            if checkInvariant(TSet[i],RJF,r) == 'TRUE':
-                Inv.append(TSet[i])
-                print(Inv)
-            i = i+1
-        print(Inv)
-        Inv = mergevectors(RJF[1],Inv)
-        ### Add zeros corresponding to complex eigenvalues
-    
-    #if m==0:
-        #print(Inv)
-        #Inva=[]
-        #i =0
-        #while i< len(Inv):
-            #j=0
-            #m =[]
-            #while j<len(mul):
-                #m.append(mul[len(mul)-1-j])
-                #j=j+1
-            #print(m)
-            #Inva.append(convertmult(mul,Inv[i],n))
-            #i=i+1
-        #i=0
-        #Inv =[]
-        #print(Inva)
-        #while i < len(Inva):
-            #Addcomplex=[]
-            #j=0
-            #while j< len(Inva[i])-1:
-                #Addcomplex.append(Inva[i][j])
-                #j=j+1
-            #print(Addcomplex)
-            #j=0
-            #while j< n +1- len(Inva[i]):
-                #j=j+1
-                #Addcomplex.append(0)
-            #print(Addcomplex)
-            #Addcomplex.append(Inva[i][len(Inva[i])-1])
-            #Inv.append(Addcomplex)
-            #print(Inv)
-            #i=i+1
-        ### No real eigenvalues
-    if m ==1:
-        InvCom =[]
-        InvComM =[]
-        i = 0
-        while i< M.nrows():
-            InvCom.append(0)
-            InvComM.append(0)
-            i = i+1
-        InvComM.append(-1)
-        InvCom.append(1)
-        #print(InvCom)
-        #print(InvComM)
-        Inv = [InvComM, InvCom]
-    if r==0 and m==2:
-        Inv = generateInvariantAllRational(M,0)
-        print(Inv)
-    if r >0 and m==2:
-        Pre = generateInvariantAllRAtional(M,r-1)
-        Inv = Pre
-        print(Pre)
-        i = 0
-        TSet = candidates(RJF)
-        TSet =mergevectors(RJF[1],TSet)
-        print('TSet')
-        print(Inv)
-        while i< len(Pre):
-            TSet.remove(Pre[i])
-            i = i+1
-        print('Here')
-        print(TSet)
-        i=0
-        while i < len(TSet):
-            #print(i);
-            print(TSet[i])
-            print(checkInvariantRational(TSet[i],RJF[0],r)) 
-            if checkInvariantRational(TSet[i],RJF[0],r) == 'TRUE':
-                Inv.append(TSet[i])
-                print(Inv)
-            i = i+1
-        ### Add zeros for complex eigenvalues
+    ### Add zeros corresponding to complex eigenvalues
     Inva=[]
     i =0
     while i< len(Inv):
         j=0
-        #m =[]
-        #while j<len(mul):
-            #m.append(mul[len(mul)-1-j])
-            #j=j+1
-        #print(m)
         Inva.append(Inv[i])
         i=i+1
     i=0
@@ -145,6 +40,25 @@ def generateInvariant(M,r):
         #print(Addcomplex)
         Addcomplex.append(Inva[i][len(Inva[i])-1])
         Inv.append(Addcomplex)
-        #print(Inv)
         i=i+1
-    return Inv
+    qf = qepcad_formula
+    F = []
+    i =0
+    while i< len(Inv):
+        Fi =[]
+        j=0
+        while j<len(Inv[i])-1:
+            if Inv[i][j]==0:
+                Fi = qf.and_(Fi, a[j+1]==0)
+            else:
+                Fi = qf.and_(Fi, a[j+1]!=0)
+            j=j+1
+        if Inv[i][j] ==1:
+            Fi = qf.and_(Fi, a[j+1]>=0)
+        else:
+            Fi = qf.and_(Fi, a[j+1]<=0)
+        F = qf.or_(F, Fi)
+        i = i+1
+    print ("J is a real Jordan form of the update map")
+    print(InvIneq>0, 'is an ', r, 'th invariant inequality of a loop with the update map J when', '(',a[1], ',...,', a[n+1],') satisfies the following logical formula' )
+    print(F)
