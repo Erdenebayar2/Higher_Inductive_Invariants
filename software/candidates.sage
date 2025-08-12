@@ -26,7 +26,7 @@ def candidates(M):
     TSet =[]
     i=1
     while i < len(mul)+1:
-        print(T[1])
+        #print(T[1])
         if i ==1:
             TSet.append(T[1])
         if i>1:
@@ -35,7 +35,7 @@ def candidates(M):
     #print(TSet)
     TSet.append([-1,1])
     TSet = CartesianProduct_iters(*TSet).list()
-    print(TSet)
+    #print(TSet)
     ### Rational case
     nr = MR.nrows()
     char_poly = MR.charpoly('x')
@@ -57,7 +57,7 @@ def candidates(M):
             #print(S[i])
         #print(S[i])
         i = i+1
-    print(S)
+    #print(S)
     i=1
     while i < len(mulr)+1:
         if i ==1:
