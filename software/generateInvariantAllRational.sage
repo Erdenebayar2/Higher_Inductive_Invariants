@@ -1,6 +1,6 @@
 def generateInvariantAllRational(M,r):
     RJF = rationaljordanform(M)
-    print(RJF)
+    #print(RJF)
     i =0 
     Inv = []
     TSet = candidates(RJF)
@@ -8,8 +8,8 @@ def generateInvariantAllRational(M,r):
     #print(TSet)
     while i < len(TSet):
         #print(i);
-        print(TSet[i])
-        print(checkInvariantRational(TSet[i],RJF[0],r)) 
+        #print(TSet[i])
+        #print(checkInvariantRational(TSet[i],RJF[0],r)) 
         if checkInvariantRational(TSet[i],RJF[0],r) == 'TRUE':
             Inv.append(TSet[i])
         i = i+1
