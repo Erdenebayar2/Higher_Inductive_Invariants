@@ -18,7 +18,7 @@ def checkInvariantRational(c, M,r):
     cn = matrix(QQ, cn)
     #print(cn)
     qf = qepcad_formula
-    print(X)
+    #print(X)
     F = qf.or_(multMatrices(X,M,cn,0)+c[len(c)-1]<=0, multMatrices(X,M,cn,r+1)+c[len(c)-1]>0)
     i = 0 
     while i< r:
@@ -36,5 +36,5 @@ def checkInvariantRational(c, M,r):
     while i < n:
         F = qf.forall(px[i+1],F);
         i=i+1
-    print(F)
+    #print(F)
     return qepcad(F)
