@@ -95,5 +95,5 @@ def checkInvariant(c, M,r):
         F = qf.exists(lam[i],F)
         i = i+1
     F = qf.exists(alpha, F)
-    print(F)
+    #print(F)
     return qepcad(F)
