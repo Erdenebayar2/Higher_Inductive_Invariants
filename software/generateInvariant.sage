@@ -3,6 +3,7 @@ def generateInvariant(M,r):
     mul = multiplicity(char_poly)
     RJF = rationaljordanform(M)
     ratmul = rationalmul(M)
+    irmul = multiplicity(RJF[1].charpoly('x'))
     n = M.nrows()
     a = [var(f'a{i}') for i in range(n+2)]
     x = [var(f'x{i}') for i in range(n+1)]
@@ -50,7 +51,7 @@ def generateInvariant(M,r):
         while j<len(Inv[i])-1:
             if Inv[i][j]==0:
                 Fi = qf.and_(Fi, a[j+1]==0)
-            else:
+            if Inv[i][j]== 1:
                 Fi = qf.and_(Fi, a[j+1]!=0)
             j=j+1
         if Inv[i][j] ==1:
@@ -59,6 +60,21 @@ def generateInvariant(M,r):
             Fi = qf.and_(Fi, a[j+1]<=0)
         F = qf.or_(F, Fi)
         i = i+1
+    #print('Done')
+    #print(Inv)
+    G = []
+    #print(ratmul)
+    #print(irmul)
+    #print(n)
+    i =0
+    while i<len(Inv):
+        #print(i)
+        G = qf.or_(G,logicalformula(Inv[i], ratmul, irmul, n))
+        i =i+1
+    print(Inv)
     print ("J is a real Jordan form of the update map")
     print(InvIneq>0, 'is an ', r, 'th invariant inequality of a loop with the update map J when', '(',a[1], ',...,', a[n+1],') satisfies the following logical formula' )
-    print(F)
+    #print(F)
+    print(G)
+    
+   
