@@ -11,4 +11,20 @@ def rationalmul(M):
             ratmul.append(F[i][1])
             #print(ratmul)
         i = i+1
-    return ratmul
+    RatRootsM = char_poly.roots(ring = QQ, multiplicities =True)
+    RatRoots = []
+    i =0 
+    while i<len(RatRootsM):
+        RatRoots.append(RatRootsM[i][0])
+        i = i+1
+    RatRoots.sort()
+    RatRootsMS = []
+    i = 0
+    while i< len(RatRoots):
+        j =0
+        while j<len(RatRootsM):
+            if RatRootsM[j][0] == RatRoots[i]:
+                RatRootsMS.append(RatRootsM[j])
+            j = j+1
+        i = i+1
+    return [ratmul, RatRootsMS]
