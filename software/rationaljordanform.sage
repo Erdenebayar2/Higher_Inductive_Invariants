@@ -4,21 +4,34 @@ def rationaljordanform(M):
     F = char_poly.factor()
     #print(F)
     roots = []
-    i =0
+    RatPol = 1
+    i =0 
     while i<len(F):
         if F[i][0].degree() ==1:
-            roots.append(-(F[i][0].coefficients(sparse=False))[0])
-        i=i+1
-    roots.sort()
-    i =0 
-    JR = matrix(QQ,[])
-    while i < len(roots):
-        j = 0
-        while j < len(F):
-            if F[j][0].degree() ==1 and -(F[j][0].coefficients(sparse=False))[0] == roots[i]:
-                JR = block_diagonal_matrix(JR, jordan_block(roots[i], F[j][1]))
-            j = j+1               
-        i= i+1
+            RatPol =RatPol*F[i][0]**(F[i][1])
+        i = i+1
+    #print(RatPol)
+    if RatPol == 1:
+        JR = matrix(QQ,[])
+    else:
+        JR = companion_matrix(RatPol.coefficients(sparse=False))
+        JR = JR.jordan_form(transformation=False,eigenvalues = rationalmul(JR)[1])
+    #print(JR)
+    #i =0
+    #while i<len(F):
+        #if F[i][0].degree() ==1:
+            #roots.append(-(F[i][0].coefficients(sparse=False))[0])
+        #i=i+1
+    #roots.sort()
+    #i =0 
+    #JR = matrix(QQ,[])
+    #while i < len(roots):
+        #j = 0
+        #while j < len(F):
+            #if F[j][0].degree() ==1 and -(F[j][0].coefficients(sparse=False))[0] == roots[i]:
+                #JR = block_diagonal_matrix(JR, jordan_block(roots[i], F[j][1]))
+            #j = j+1               
+        #i= i+1
     #print(JR)
     i =0
     #print(F)
