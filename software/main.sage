@@ -1,6 +1,8 @@
 from sage.rings.polynomial.complex_roots import complex_roots
+import time
 from sage.misc.sage_timeit import SageTimeitResult
 from sage.combinat.cartesian_product import CartesianProduct_iters
+from sage.interfaces.qepcad import qformula
 load("multiplicity.sage")
 load("checkInvariant.sage")
 load("generateInvariantAll.sage")
@@ -15,4 +17,6 @@ load("checkInvariantRational.sage")
 load("generateInvariantAllRational.sage")
 load("multMatrices.sage")
 load("logicalformula.sage")
+load("SmallReachableSet.sage")
+load("runall.sage")
 R.<x> = PolynomialRing(QQ)
