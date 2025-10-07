@@ -1,6 +1,7 @@
 def SmallReachableSet(example, r,phi, option):
     load(example)
     n = M.nrows()
+    #print(n)
     x = [var(f'x{i}') for i in range(n+1)]
     a= [var(f'a{i}') for i in range(n+2)]
     qf = qepcad_formula
@@ -31,7 +32,7 @@ def SmallReachableSet(example, r,phi, option):
         while i<n+1:
             F =qf.forall(a[i+1],F)
             i = i+1
-        #print(F)
+        print(F)
         print("The smallest reachable set is defined by")
         F= qepcad(F)
     if option == 'some':
@@ -41,6 +42,7 @@ def SmallReachableSet(example, r,phi, option):
             InvIneq = InvIneq+a[i]*x[i]
             i = i+1
         InvIneq = InvIneq+a[n+1]
+        print(F)
         print(InvIneq>0, 'is an ', r, 'th invariant inequality of a loop with the update map J when' )
         F = qepcad(F,solution='cell-points')
     print(F)
