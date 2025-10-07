@@ -1,5 +1,7 @@
+### Generating candidates (0,..0,1,0...0)
 def candidates(M):
     MR = M[0]
+    #print(MR)
     MNR = M[1]
     #print([MR,MNR])
     nnr = MNR.nrows()
@@ -39,7 +41,7 @@ def candidates(M):
     ### Rational case
     nr = MR.nrows()
     char_poly = MR.charpoly('x')
-    mulr = multiplicity(char_poly)
+    mulr = rationalmul(MR)[0]
     #print(mulr)
     S = [var(f'S{i}') for i in range(len(mulr)+1)]
     if len(mulr)>0:
