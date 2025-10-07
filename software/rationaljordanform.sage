@@ -10,9 +10,12 @@ def rationaljordanform(M):
         if F[i][0].degree() ==1:
             RatPol =RatPol*F[i][0]**(F[i][1])
         i = i+1
-    #print(RatPol)
+    #print(RatPol.degree())
     if RatPol == 1:
         JR = matrix(QQ,[])
+    elif RatPol.degree()==n:
+        JR = companion_matrix(RatPol.coefficients(sparse=False))
+        JR = M.jordan_form(transformation=False,eigenvalues = rationalmul(JR)[1])
     else:
         JR = companion_matrix(RatPol.coefficients(sparse=False))
         JR = JR.jordan_form(transformation=False,eigenvalues = rationalmul(JR)[1])
