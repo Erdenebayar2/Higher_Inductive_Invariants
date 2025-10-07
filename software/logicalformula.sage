@@ -13,8 +13,9 @@ def logicalformula(M,c, ratmul, irmul, n):
         i =0
         P = block_diagonal_matrix(matrix(QQ,[1]), P)
         P = block_diagonal_matrix(P,matrix(QQ,[1]))
-        #print(P)
+        #print(J,P)
         A = (matrix(SR, A)*P)[0]
+        #print(A)
     #print(A,P)
     #print(J)
     j=0
