@@ -24,12 +24,14 @@ def rationalmul(M):
             #print(ratmul)
         i = i+1
     RatRootsM = char_poly.roots(ring = QQ, multiplicities =True)
+    #print(RatRootsM)
     RatRoots = []
     i =0 
     while i<len(RatRootsM):
         RatRoots.append(RatRootsM[i][0])
         i = i+1
     RatRoots.sort()
+    #print(RatRoots)
     RatRootsMS = []
     i = 0
     while i< len(RatRoots):
@@ -39,6 +41,7 @@ def rationalmul(M):
                 RatRootsMS.append(RatRootsM[j])
             j = j+1
         i = i+1
+    #print(RatRootsMS)
     if sum(ratmul)==n:
         [J,P]=M.jordan_form(transformation=True,eigenvalues = RatRootsMS)
         #print(J)
