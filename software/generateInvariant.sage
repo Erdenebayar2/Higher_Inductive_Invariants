@@ -21,7 +21,7 @@ def generateInvariant(example, r, option):
            f= f+ a[j+1]*N[j,0]
            j=j+1
         F = qf.and_([F], f+a[n+1]>0)
-        #print(F)
+        print(F)
         i=i+1
     if option == 'All':
         f = a[n+1]
@@ -35,10 +35,10 @@ def generateInvariant(example, r, option):
         while i<n+1:
             F =qf.forall(a[i+1],F)
             i = i+1
-        print(F)
+        #print(F)
         print("The smallest reachable set is defined by")
         F= qepcad(F)
-        print(F)
+        #print(F)
     if option == 'any':
         i=1
         InvIneq = 0
@@ -59,5 +59,5 @@ def generateInvariant(example, r, option):
         print(F)
         print(InvIneq>0, 'is an ', r, 'th invariant inequality of a loop with the update map J when' )
         F = qepcad(F,solution='cell-points')
-    print(F)
+    #print(F)
     return F
