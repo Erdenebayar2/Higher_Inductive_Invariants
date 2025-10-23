@@ -76,7 +76,8 @@ def computeCr(example,r):
         i =i+1
     #print(Inv)
     #print ("J is a real Jordan form of the update map")
-    print(InvIneq>0, 'is an ', r, 'th invariant inequality of a loop when', '(',a[1], ',...,', a[n+1],') satisfies the following logical formula' )
+    #print(InvIneq>0, 'is an ', r, 'th invariant inequality of a loop when', '(',a[1], ',...,', a[n+1],') satisfies the following logical formula' )
+    print('(',a[1], ',...,', a[n+1],') ', 'is contained in ', 'C_',r,'(',initial,',M',')', 'if and only if', '(',a[1], ',...,', a[n+1],') satisfies the following logical formula' )
     #print(F)
     #G = qepcad(G)
     #print(qepcad(G))
@@ -208,8 +209,8 @@ def computeCrN(M,r):
     RatRoots = rationalmul(M)
     ratmul = RatRoots[0]
     #print('Ra')
-    if r ==0:
-        print("The number of rational eigenvalues is ", sum(ratmul))
+    #if r ==0:
+        #print("The number of rational eigenvalues is ", sum(ratmul))
     #print(mul)
     #print(mul)
     #print(sum(mul))
