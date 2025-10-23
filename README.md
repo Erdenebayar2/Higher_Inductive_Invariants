@@ -2,7 +2,7 @@
             sudo apt-get install qepcad
 2. Compute C_r(a,M):
 computeCr("benchmark/'example'.sage",r). For example: computeCr("benchmark/Example4.1.sage",5)
-3. Generate an rth inductive invariant for the loop L(a,M). You can choose among three options:
+3. Generate an rth inductive invariant for the loop L(a,M). You can choose among three options:<br>
 a. Compute the smallest reachable set, use command <br>
     generateInvariant("benchmark/'example'.sage",r, "All")<br>
 b. Generate several inductive invariants:<br>
