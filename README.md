@@ -6,7 +6,7 @@ Ensure that the **QEPCAD** package is installed and working.
 If it is not installed, run the following command in your terminal:
 
 ```bash
-sudo apt-get install qepcad
+sage -f qepcad
 ```
 
 ---
