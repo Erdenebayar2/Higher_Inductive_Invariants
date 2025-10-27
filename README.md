@@ -38,10 +38,10 @@ generateInvariant("benchmark/<example>.sage", r, "All")
 
 ### b. Generate several inductive invariants
 ```python
-generateInvariant("benchmark/ex2.sage", 1, "some")
+generateInvariant("benchmark/ex2.sage", r, "some")
 ```
 
 ### c. Generate a single inductive invariant
 ```python
-generateInvariant("benchmark/ex2.sage", 1, "any")
+generateInvariant("benchmark/ex2.sage", r, "any")
 ```
