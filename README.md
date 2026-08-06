@@ -27,66 +27,72 @@ sudo apt-get install qepcad
 The repository contains:
 
 * a `software` directory containing the SageMath implementation of the algorithms;
-* a `benchmark` directory containing linear loop examples;
-* scripts for running the algorithms on all benchmarks;
+* a `benchmark` directory containing linear-loop examples;
+* scripts for running the algorithms on all benchmarks.
 
-Each benchmark is stored in a SageMath file such as:
+Each benchmark is stored in a SageMath file, such as:
 
 ```text
 benchmark/Example4.1.sage
 ```
 
-A benchmark file typically defines the loop matrix and initial value
+A benchmark file typically defines the loop matrix and the initial value.
 
 ## Usage
 
 Run the commands below from the main software directory in SageMath.
 
-### Computing C_r(a,M)
+First, load the main implementation file:
 
-Use `computeCr` to compute the coefficient set C_r(a,M) for a prescribed order r:
-
+```python
+load("main.sage")
 ```
-load ("main.sage")
+
+### Computing (C_r(a,M))
+
+Use `LinearInductiveInvariantsFixedOrder` to compute the coefficient set (C_r(a,M)) for a prescribed order (r):
+
+```python
 LinearInductiveInvariantsFixedOrder(example, r)
 ```
 
 For example:
 
-```
+```python
 LinearInductiveInvariantsFixedOrder("benchmark/Example4.1.sage", 5)
 ```
 
-The first argument is the path to the benchmark file, and the second argument is the order r.
+The first argument is the path to the benchmark file, and the second argument is the order (r).
 
-The function returns a quantifier-free logical formula describing all coefficient vectors belonging to C_r(a,M).
+The function returns a quantifier-free logical formula describing all coefficient vectors belonging to (C_r(a,M)).
 
 ### Generating Linear Higher Inductive Invariants
 
-Use `GenerateInvariantsFixedOrder` to generate a linear higher inductive invariant for the loop L(a,M):
+Use `GenerateInvariantsFixedOrder` to generate a linear higher inductive invariant for the loop (L(a,M)):
 
-```
+```python
 GenerateInvariantsFixedOrder("benchmark/<example>.sage", r)
 ```
 
-The function returns one feasible coefficient vector defining a nontrivial linear higher inductive invariant of order r.
+The function returns one feasible coefficient vector defining a nontrivial linear higher inductive invariant of order (r).
 
-The returned vector contains the coefficients of the linear polynomial . If no coefficient vector satisfying all constraints exists, the function returns `None`.
+The returned vector contains the coefficients of the corresponding linear polynomial. If no coefficient vector satisfying all constraints exists, the function returns `None`.
 
-#### Computing the Complete Family of All Higher Inductive invariants
+#### Computing the Complete Family of All Higher Inductive Invariants
 
+Use:
 
-```
+```python
 LinearHigherInductiveInvariants("benchmark/<example>.sage")
 ```
 
 For example:
 
-```
+```python
 LinearHigherInductiveInvariants("benchmark/Example4.1.sage")
 ```
 
-The function returns a quantifier-free logical formula describing the complete family of coefficient vectors that define linear higher inductive invariant inequalities and the stabilizer order.
+The function returns a quantifier-free logical formula describing the complete family of coefficient vectors defining linear higher inductive invariant inequalities, together with the stabilization order.
 
 ## Benchmark Format
 
