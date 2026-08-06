@@ -42,9 +42,9 @@ A benchmark file typically defines the loop matrix and initial value
 
 Run the commands below from the main software directory in SageMath.
 
-### Computing (C_r(a,M))
+### Computing C_r(a,M)
 
-Use `computeCr` to compute the coefficient set (C_r(a,M)) for a prescribed order (r):
+Use `computeCr` to compute the coefficient set C_r(a,M) for a prescribed order r:
 
 ```
 load ("main.sage")
@@ -57,21 +57,21 @@ For example:
 LinearInductiveInvariantsFixedOrder("benchmark/Example4.1.sage", 5)
 ```
 
-The first argument is the path to the benchmark file, and the second argument is the order (r).
+The first argument is the path to the benchmark file, and the second argument is the order r.
 
-The function returns a quantifier-free logical formula describing all coefficient vectors belonging to (C_r(a,M)).
+The function returns a quantifier-free logical formula describing all coefficient vectors belonging to C_r(a,M).
 
 ### Generating Linear Higher Inductive Invariants
 
-Use `GenerateInvariantsFixedOrder` to generate a linear higher inductive invariant for the loop (L(a,M)):
+Use `GenerateInvariantsFixedOrder` to generate a linear higher inductive invariant for the loop L(a,M):
 
 ```
 GenerateInvariantsFixedOrder("benchmark/<example>.sage", r)
 ```
 
-The function returns one feasible coefficient vector defining a nontrivial linear higher inductive invariant of order (r).
+The function returns one feasible coefficient vector defining a nontrivial linear higher inductive invariant of order r.
 
-The returned vector contains the coefficients of the linear polynomial (\ell). If no coefficient vector satisfying all constraints exists, the function returns `None`.
+The returned vector contains the coefficients of the linear polynomial . If no coefficient vector satisfying all constraints exists, the function returns `None`.
 
 #### Computing the Complete Family of All Higher Inductive invariants
 
