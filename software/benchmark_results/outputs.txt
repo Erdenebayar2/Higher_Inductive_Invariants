@@ -1,0 +1,80 @@
+================================================================================
+Benchmark: cohencu
+File: benchmark/cohencu.sage
+Status: success
+Running time: 0.013177 seconds
+Output:
+[(1, 0, 0, -1/6, 0, 0), 0]
+
+================================================================================
+Benchmark: continuedfraction
+File: benchmark/continuedfraction.sage
+Status: success
+Running time: 0.021231 seconds
+Output:
+[(1, 1, -1, -1, 0), 1]
+
+================================================================================
+Benchmark: Example4.1
+File: benchmark/Example4.1.sage
+Status: success
+Running time: 0.042596 seconds
+Output:
+[(1, 1/2, 0, -2, 1/4, 3/4, 11/8), 3]
+
+================================================================================
+Benchmark: Example4.2
+File: benchmark/Example4.2.sage
+Status: success
+Running time: 0.079912 seconds
+Output:
+[(1, -1/29, -267587882368967/277144592453573, 1, -1/29, -267587882368967/277144592453573, 2603/435), 11]
+
+================================================================================
+Benchmark: Example4.3
+File: benchmark/Example4.3.sage
+Status: success
+Running time: 0.020790 seconds
+Output:
+[(1, 1, 2, 2, 4, 4, 0), 1]
+
+================================================================================
+Benchmark: ex1
+File: benchmark/ex1.sage
+Status: success
+Running time: 0.021518 seconds
+Output:
+[(0, -1, 0, 0), 1]
+
+================================================================================
+Benchmark: ex2
+File: benchmark/ex2.sage
+Status: success
+Running time: 0.016566 seconds
+Output:
+[(0, 1, 0), 1]
+
+================================================================================
+Benchmark: freire1
+File: benchmark/freire1.sage
+Status: success
+Running time: 0.009777 seconds
+Output:
+[(0, 0, 1, 0), 0]
+
+================================================================================
+Benchmark: freire2
+File: benchmark/freire2.sage
+Status: success
+Running time: 0.010964 seconds
+Output:
+[(0, 0, 0, 1, 0), 0]
+
+================================================================================
+Benchmark: sqrt
+File: benchmark/sqrt.sage
+Status: success
+Running time: 0.009992 seconds
+Output:
+[(1, -1/2, 0, 0, 0), 0]
+
