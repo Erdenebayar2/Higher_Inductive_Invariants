@@ -1,6 +1,6 @@
 # Computing Higher Inductive Invariant Inequalities
 
-This repository contains a prototype implementation of algorithms for computing and generating higher-order inductive invariants for simple loops.
+This repository contains a prototype implementation of algorithms for computing and generating higher inductive invariants for simple loops.
 
 The algorithms are implemented in SageMath and use QEPCAD for quantifier elimination where required.
 
@@ -26,7 +26,7 @@ sudo apt-get install qepcad
 
 The repository contains:
 
-* the SageMath implementation of the algorithms;
+* a `software` directory containing the SageMath implementation of the algorithms;
 * a `benchmark` directory containing linear loop examples;
 * scripts for running the algorithms on all benchmarks;
 
@@ -59,6 +59,8 @@ LinearInductiveInvariantsFixedOrder("benchmark/Example4.1.sage", 5)
 
 The first argument is the path to the benchmark file, and the second argument is the order (r).
 
+The function returns a quantifier-free logical formula describing all coefficient vectors belonging to (C_r(a,M)).
+
 ### Generating Linear Higher Inductive Invariants
 
 Use `GenerateInvariantsFixedOrder` to generate a linear higher inductive invariant for the loop (L(a,M)):
@@ -66,6 +68,10 @@ Use `GenerateInvariantsFixedOrder` to generate a linear higher inductive invaria
 ```
 GenerateInvariantsFixedOrder("benchmark/<example>.sage", r)
 ```
+
+The function returns one feasible coefficient vector defining a nontrivial linear higher inductive invariant of order (r).
+
+The returned vector contains the coefficients of the linear polynomial (\ell). If no coefficient vector satisfying all constraints exists, the function returns `None`.
 
 #### Computing the Complete Family of All Higher Inductive invariants
 
@@ -80,7 +86,7 @@ For example:
 LinearHigherInductiveInvariants("benchmark/Example4.1.sage")
 ```
 
-
+The function returns a quantifier-free logical formula describing the complete family of coefficient vectors that define linear higher inductive invariant inequalities and the stabilizer order.
 
 ## Benchmark Format
 
@@ -102,43 +108,3 @@ Here:
 
 * `M` is the matrix defining the linear loop update;
 * `initial` is the initial state of the loop.
-
-The implementation converts `initial` into a SageMath vector before constructing the initiation constraints.
-
-## Output
-
-Depending on the selected function, the output may be:
-
-* a quantifier-free description of (C_r(a,M));
-* a family of linear invariant inequalities;
-* one feasible coefficient vector;
-* several invariant inequalities;
-* a complete invariant family;
-* benchmark results stored in CSV format.
-
-When `GenerateInvariantsFixedOrder` returns a vector
-
-```text
-(c1, c2, ..., cn, b)
-```
-
-it represents the linear inequality
-
-[
-c_1x_1+\cdots+c_nx_n+b>0.
-]
-
-If no admissible nontrivial invariant exists for the prescribed order, the function returns:
-
-```python
-None
-```
-
-## Notes
-
-QEPCAD is used for general quantifier-elimination computations. When the generated constraints are linear, the implementation instead uses exact rational linear programming through SageMath's `GLPK/exact` backend.
-
-This avoids unnecessary cylindrical algebraic decomposition and is substantially more efficient for linear constraints.
-
-The current implementation is a research prototype and may be extended as the algorithms and benchmark collection develop.
-
